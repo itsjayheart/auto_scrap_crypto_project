@@ -38,11 +38,12 @@ end
 
 def save_data(data)
 	save_date = "[#{Time.new.inspect.to_s.slice(0, 19).to_s}]"
-	File.write("../database crypto_data#{save_date}.md", "#{data}", mode: "w")
-	puts "Data saved in database/crypto_data#{save_date}.md"
+	system("git add database/crypto_data#{save_date}.md")
 	system("git commit -m 'scrap_save_#{save_date}'")
 	system("git push origin master")
 	puts "Commit pushed to github."
+	File.write("database/crypto_data#{save_date}.md", "#{data}", mode: "w")
+	puts "Data saved in database/crypto_data#{save_date}.md"
 end
 
 def perform(page)
