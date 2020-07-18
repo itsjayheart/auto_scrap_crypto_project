@@ -29,8 +29,8 @@ def compile_data(key_array, value_array)
   compiled_data.unshift(save_date)
   compiled_data.unshift(compiled_data.flatten.length + 2)
   puts compiled_data
-  puts "\nData compiled"  
-  return compiled_data 
+  puts "\nData compiled"
+  return compiled_data
 end
 
 def save_data(data)
@@ -55,9 +55,12 @@ def perform(page)
 end
 
 page = (Nokogiri::HTML(open("https://coinmarketcap.com/all/views/all/")))
-10.times do
-perform(page)
+x = 0
+loop do
+  perform(page)
+  puts "scrap number #{x} was done, please wait for 1 hour"
+  x = x + 1
+  sleep(3600)
 end
+
 puts = "source : #{page}"
-
-
